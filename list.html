@@ -72,7 +72,8 @@
     <div >
         <div>Total # of items: {{todos.length}}</div>
         <div># of items to be purchased: {{todos.$filter({done: false}).length}}</div>
-        <div>Items Checked out: {{todos.$filter({done: true}).length}}</div>
+        <div>Items Checked out: {{todos.$filter({done: true}).length}}</div>		
+		<div> Recipe suggestions based on items in your basket : {{todos.name}}</div>
     </div>    
    	</div>
 	</div>
