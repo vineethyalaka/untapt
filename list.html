@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<script type="text/javascript" ng:autobind src="https://code.angularjs.org/0.9.16/angular-0.9.16.js"></script>
-		<script src="js/main.js"></script>
+		<script src="js/app.js"></script>
 		<link href="css/style.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
@@ -17,6 +17,8 @@
 		</select>
 		<button ng:click="addTolist()" class="button">Add</button>    
 		<div class="tasks" ng:show="todos.$filter({done: false}).length > 0">
+		
+		<!-- Shopping List panel - Add and Remove items-->
         <label><h3>Shopping List:</h3></label>
         <ul ng:repeat="todo in todos.$filter({done: false})" class="list">
             <li class="li">              
@@ -59,6 +61,7 @@
         Total Items Still Needed: {{todos.$filter({done: false}).$sum('quantity')}}
     </div>
     
+	<!-- Basket Add and Remove items checkout from the todo list-->
     <div ng:show="todos.$filter({done: true}).length > 0">
         <label><h3>Basket:</h3></label>
         <ul ng:repeat="todo in todos.$filter({done: true})" class="list-basket">
