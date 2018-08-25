@@ -24,3 +24,5 @@ Languages used : HTML, CSS, AngularJS
 
 Functioning of the application: There are 2 input fields for the friends to add in the items with the quantity. A few regularly purchased items have been preloaded in the shopping list as an array of items. The Shopping list has the list of items the friends would want to add in a list to remember what they have to get based on the recipes they have thought about making. The Basket is the repostory of items which have been checked or puchased. Items in the shopping list can be modified by clicking on the name of the item. Items in the basket can be removed by clicking on ad to shopping list which pushes the item back to the shopping list and can be permanently removed by clicking on remove option. 
 Additional Features in future : Based on the items moved to the basket the application would suggest a few recipes for the meal or vice versa.
+
+Testing tools : Selenium, Rapise and Mozilla Firebug 
