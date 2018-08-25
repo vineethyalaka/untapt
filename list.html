@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<script type="text/javascript" ng:autobind src="https://code.angularjs.org/0.9.16/angular-0.9.16.js"></script>
+		<script src="js/main.js"></script>
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div id="container">
+		<h2>The Grocery List App</h2>
+		<div ng-app="myApp" >
+		<div ng:controller="listController">
+		<!-- List of items to be added for the recipe and quantity	-->
+		<input class="input" type="text" name="itemname" size="30" placeholder="Type the name of your items here" ng:required />
+		<label>Quantity:</label>
+		<select name="toquantity" class="input">
+        <option ng:repeat="quantity in quantities" value="{{quantity}}">{{quantity}}</option>
+		</select>
+		<button ng:click="addTolist()" class="button">Add</button>    
+		<div class="tasks" ng:show="todos.$filter({done: false}).length > 0">
+        <label><h3>Shopping List:</h3></label>
+        <ul ng:repeat="todo in todos.$filter({done: false})" class="list">
+            <li class="li">              
+                <div ng:controller="basketController">
+                    <table>
+					<tbody>
+					<tr> 
+					<td>
+					<button ng:click="todos.$remove(todo)" class="item-button">Remove</button>              
+                    </td>
+					<td>
+					<button ng:click="todo.done = true" class="item-button">Add to Basket</button>
+					</td>
+					<td class="spacing">
+                    <span ng:hide="editorEnabled" ng:click="enableEditor()">
+                        <b>{{todo.name}}</b> - Quantity : "{{todo.quantity}}"
+                    </span>
+					</td>
+					<td>
+                    <span ng:show="editorEnabled">
+                        <input type="text" size="30" name="itemname" ng:required />
+                        <select name="toquantity">
+					    <option ng:repeat="quantity in quantities" value="{{quantity}}">{{quantity}}</option>
+                        </select> 
+					</td>
+					<td>
+                        <button ng:click="save()" class="item-button">Ok</button>
+					</td>
+					<td>
+                        <button ng:click="disableEditor()" class="item-button">Cancel</button>
+					</td>
+                    </span>
+					</tr> 
+					</tbody>
+					</table>					
+                </div>
+                
+            </li>
+        </ul>
+        Total Items Still Needed: {{todos.$filter({done: false}).$sum('quantity')}}
+    </div>
+    
+    <div ng:show="todos.$filter({done: true}).length > 0">
+        <label><h3>Basket:</h3></label>
+        <ul ng:repeat="todo in todos.$filter({done: true})" class="list-basket">
+            <li class="li">       
+                <span class="todo done"><b>{{todo.name}}</b> - Quantity : "{{todo.quantity}}"</span>
+				<button ng:click="todo.done = false" class="item-basket-button">Add to Shopping List</button>
+            </li>
+        </ul>
+        Final Quantity: {{todos.$filter({done: true}).$sum('quantity')}}
+    </div>    
+    <div >
+        <div>Total # of items: {{todos.length}}</div>
+        <div># of items to be purchased: {{todos.$filter({done: false}).length}}</div>
+        <div>Items Checked out: {{todos.$filter({done: true}).length}}</div>
+    </div>    
+   	</div>
+	</div>
+	</div>
+	</body>
+</html>
